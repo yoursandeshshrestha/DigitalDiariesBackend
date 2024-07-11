@@ -10,7 +10,7 @@ const path = require("path");
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://blogbysandesh-htl47wypl-sandesh-shresthas-projects-73826f83.vercel.app",
+  "https://blogbysandesh.vercel.app",
 ];
 
 const corsOptions = {
@@ -21,6 +21,7 @@ const corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
