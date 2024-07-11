@@ -8,9 +8,19 @@ const postRoutes = require("./routes/postRoutes");
 const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 const path = require("path");
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://blogbysandesh-htl47wypl-sandesh-shresthas-projects-73826f83.vercel.app",
+];
+
 const corsOptions = {
-  origin: "http://localhost:5173",
-  credentials: true,
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
 };
 
 app.use(cors(corsOptions));
